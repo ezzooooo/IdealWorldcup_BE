@@ -17,7 +17,7 @@ public class UserDAO {
 	private ResultSet rs = null;
 	
 	private final String USER_GET = "select * from users" ;
-	private final String USER_INSERT = 	"insert into board(id, nickname) values((select nvl(max(seq),0)+1 from board),?)";
+	private final String USER_INSERT = 	"insert into board(id, nickname) values((select ifnull(max(seq),0)+1 from board),?)";
 
 	public List<UserVO> getUserList() {
 		List<UserVO> userList = new ArrayList<UserVO>();
