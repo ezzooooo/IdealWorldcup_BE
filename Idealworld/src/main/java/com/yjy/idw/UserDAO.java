@@ -16,19 +16,20 @@ public class UserDAO {
 	private PreparedStatement stmt = null; 
 	private ResultSet rs = null;
 	
-	private final String USER_GET = "select * from users" ;
-	private final String USER_INSERT = 	"insert into board(id, nickname) values((select ifnull(max(seq),0)+1 from board),?)";
+	private final String USER_GET = "select * from user" ;
+	private final String USER_INSERT = 	"insert into user(id, nickname) values((select ifnull(max(id),0)+1 from user a),?)";
 
 	public List<UserVO> getUserList() {
 		List<UserVO> userList = new ArrayList<UserVO>();
 		try {
 			conn = JDBCUtil.getConnection();
-			conn.prepareStatement(USER_GET); 
+			stmt = conn.prepareStatement(USER_GET); 
 			rs = stmt.executeQuery(); 
 			while(rs.next()) {
 				UserVO user = new UserVO(); 
 				user.setId(rs.getInt("ID"));
 				user.setNickname(rs.getString("NICKNAME"));
+				userList.add(user);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
