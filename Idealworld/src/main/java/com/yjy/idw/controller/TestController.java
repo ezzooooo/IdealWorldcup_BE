@@ -20,9 +20,10 @@ public class TestController {
 		return userService.getUserList();
 	}
 	
-	@RequestMapping("insertUesr.do") 
-	public void insertUser() {
-		userService.insertUser();
+	@RequestMapping("insertUser.do") 
+	public String insertUser() {
+	   	userService.insertUser();
+		return "추가완료";
 	}
 	
 }
