@@ -15,12 +15,12 @@ public class TestController {
 	@Autowired(required=true)
 	private UserService userService;
 	
-	@RequestMapping("getUserList.do")
+	@RequestMapping("/getUserList.do")
 	public List<UserVO> getUserList() {
 		return userService.getUserList();
 	}
 	
-	@RequestMapping("insertUser.do") 
+	@RequestMapping("/insertUser.do") 
 	public String insertUser() {
 	   	userService.insertUser();
 		return "추가완료";
