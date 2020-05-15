@@ -12,8 +12,8 @@ import java.sql.ResultSet;
 public class JDBCUtil {
 	public static Connection getConnection() {
 		try {
-			Class.forName("org.h2.Driver");
-			return DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test","sa","");
+			Class.forName("com.mysql.jdbc.Driver");
+			return DriverManager.getConnection("jdbc:mysql://localhost:8080/ideal_db?autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC","root","");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
