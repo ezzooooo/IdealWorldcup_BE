@@ -17,7 +17,7 @@ public class UserDAO {
 	private ResultSet rs = null;
 	
 	private final String USER_GET = "select * from user" ;
-	private final String USER_INSERT = 	"insert into user(id, nickname) values((select ifnull(max(id),0)+1 from user a),?)";
+	private final String USER_INSERT = "insert into user(id, nickname) values((select ifnull(max(id),0)+1 from user a),?)";
 
 	public List<UserVO> getUserList() {
 		List<UserVO> userList = new ArrayList<UserVO>();
