@@ -3,34 +3,38 @@ package com.yjy.idw.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yjy.idw.UserService;
 import com.yjy.idw.UserVO;
 
 @RestController
+@RequestMapping("/users")
 public class UserController {
 	@Autowired(required=true)
 	private UserService userService;
 	
-	@RequestMapping("/")
-	public UserVO getUser(UserVO vo) {
-		return userService.getUser(vo);
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
+	public UserVO getUser(@PathVariable(value="id") String id) {
+		return userService.getUser(Integer.parseInt(id.replaceAll("id=", "")));
 	}
 	
-	@RequestMapping("/users")
+	@RequestMapping(method = RequestMethod.GET, value = "")
 	public List<UserVO> getUserList() {
 		return userService.getUserList();
 	}
 	
-	@RequestMapping("/users") 
-	public void deleteUser() {
-		
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}") 
+	public void deleteUser(String id) {
+		userService.deleteUser(Integer.parseInt(id));
 	}
 	
-	@RequestMapping(value = "/users") 
+	@RequestMapping(method = RequestMethod.POST, value = "") 
 	public String insertUser(UserVO vo) {
 	   	userService.insertUser(vo);
 		return "추가완료";
