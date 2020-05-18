@@ -13,7 +13,7 @@ public class JDBCUtil {
 	public static Connection getConnection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			return DriverManager.getConnection("jdbc:mysql://localhost:3306/test?serverTimezone=UTC","root","passwd");
+			return DriverManager.getConnection("jdbc:mysql://15.164.56.5:3306/ideal_db?serverTimezone=UTC","root","root");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

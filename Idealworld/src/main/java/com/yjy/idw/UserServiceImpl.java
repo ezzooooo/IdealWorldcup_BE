@@ -17,7 +17,19 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void insertUser() {
-		userDAO.insertUser();
+	public void insertUser(UserVO vo) {
+		userDAO.insertUser(vo);
+	}
+
+	@Override
+	public UserVO getUser(int id) {
+		// TODO Auto-generated method stub
+		return userDAO.getUser(id);
+	}
+
+	@Override
+	public void deleteUser(int id) {
+		userDAO.deleteUser(id);
+		
 	}
 }

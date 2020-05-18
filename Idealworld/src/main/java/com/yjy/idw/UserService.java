@@ -6,5 +6,7 @@ import org.springframework.stereotype.Service;
 
 public interface UserService {
 	List<UserVO> getUserList();
-	void insertUser();
+	UserVO getUser(int id);
+	void deleteUser(int id);
+	void insertUser(UserVO vo);
 }
