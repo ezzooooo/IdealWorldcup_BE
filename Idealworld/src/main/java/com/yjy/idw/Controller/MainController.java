@@ -1,4 +1,4 @@
-package com.yjy.idw.Controller;
+package com.yjy.idw.controller;
 
 import java.io.IOException;
 
