@@ -11,6 +11,7 @@ public class ImageServiceImpl implements ImageService {
 	@Override
 	public void insertImage(ImageVO vo) {
 		imageDAO.insertImage(vo);
+		
 	}
 
 }
