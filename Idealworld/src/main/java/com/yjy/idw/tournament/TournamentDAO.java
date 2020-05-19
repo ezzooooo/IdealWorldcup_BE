@@ -56,4 +56,19 @@ public class TournamentDAO {
 			JDBCUtil.close(stmt, conn);
 		}
 	}
+	
+	//토너먼트 제거 
+	public void deleteTournament(int id) {
+		System.out.println("===> JDBC로 deleteTournament() 기능 처리");
+		try {
+			conn = JDBCUtil.getConnection();
+			stmt = conn.prepareStatement(TOURNAMENT_DELETE);
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(stmt, conn);
+		}
+	}
 }
