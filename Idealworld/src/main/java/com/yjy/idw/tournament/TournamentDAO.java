@@ -31,11 +31,11 @@ public class TournamentDAO {
 	private final String TOURNAMENT_DELETE =
 			"delete TOURNAMENT where id=?";
 	private final String TOURNAMENT_LIKECNT_ADD =
-			"update TOURNAMENT set like_cnt=like_cnt+1";
+			"update TOURNAMENT set like_cnt=like_cnt+1 where id=?";
 	private final String TOURNAMENT_LIKECNT_REMOVE =
-			"update TOURNAMENT set like_cnt=like_cnt-1";
+			"update TOURNAMENT set like_cnt=like_cnt-1 where id=?";
 	private final String TOURNAMENT_PLAYCNT_ADD =
-			"update TOURNAMENT set play_cnt=play_cnt+1";
+			"update TOURNAMENT set play_cnt=play_cnt+1 where id=?";
 	
 	//토너먼트 등록
 	public void insertTournament(TournamentVO vo) {
@@ -82,11 +82,11 @@ public class TournamentDAO {
 		try {
 			conn = JDBCUtil.getConnection();
 			
-			if(title == null) {
+			if(title == null && category != null) {
 				stmt = conn.prepareStatement(TOURNAMENT_LIST_GET_C);
 				stmt.setString(1, category);
 			}
-			else if(category == null) {
+			else if(category == null && title != null) {
 				stmt = conn.prepareStatement(TOURNAMENT_LIST_GET_T + " " + sortBy);
 				stmt.setString(1, title);
 			}
@@ -147,7 +147,7 @@ public class TournamentDAO {
 		System.out.println("===> JDBC로 addPlayCnt() 기능 처리");
 		try {
 			conn = JDBCUtil.getConnection();
-			stmt = conn.prepareStatement(TOURNAMENT_LIKECNT_ADD);
+			stmt = conn.prepareStatement(TOURNAMENT_PLAYCNT_ADD);
 			stmt.setInt(1, id);
 			stmt.executeUpdate();
 		} catch (Exception e) {
@@ -162,7 +162,7 @@ public class TournamentDAO {
 		System.out.println("===> JDBC로 addPlayCnt() 기능 처리");
 		try {
 			conn = JDBCUtil.getConnection();
-			stmt = conn.prepareStatement(TOURNAMENT_LIKECNT_REMOVE);
+			stmt = conn.prepareStatement(TOURNAMENT_LIKECNT_ADD);
 			stmt.setInt(1, id);
 			stmt.executeUpdate();
 		} catch (Exception e) {
@@ -177,7 +177,7 @@ public class TournamentDAO {
 		System.out.println("===> JDBC로 addPlayCnt() 기능 처리");
 		try {
 			conn = JDBCUtil.getConnection();
-			stmt = conn.prepareStatement(TOURNAMENT_PLAYCNT_ADD);
+			stmt = conn.prepareStatement(TOURNAMENT_LIKECNT_REMOVE);
 			stmt.setInt(1, id);
 			stmt.executeUpdate();
 		} catch (Exception e) {

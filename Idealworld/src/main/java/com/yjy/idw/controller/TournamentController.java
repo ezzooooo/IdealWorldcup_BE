@@ -4,6 +4,7 @@ package com.yjy.idw.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,34 +23,34 @@ public class TournamentController {
 		service.insertTournament(vo);
 	}
 
-	@RequestMapping(method = RequestMethod.DELETE, value ="/{id}")
-	public void deleteTournament(String id) {
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+	public void deleteTournament(@PathVariable(value="id") String id) {
 		service.deleteTournament(Integer.parseInt(id.replaceAll("id=", "")));
 	}
 
 	// 잠시 김보류 
-	@RequestMapping(method = RequestMethod.GET, value = "/{title}/{category}/{sortby}")
+	@RequestMapping(method = RequestMethod.GET, value = "")
 	public List<TournamentVO> getTournamentList(String title, String category, String sortBy) {
 		return service.getTournamentList(title, category, sortBy);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
-	public TournamentVO getTournament(String id) {
+	public TournamentVO getTournament(@PathVariable(value="id") String id) {
 		return service.getTournament(Integer.parseInt(id.replaceAll("id=", "")));
 	}
 
-	@RequestMapping(method = RequestMethod.GET, path = "/playcnt", value = "/{id}")
-	public void addPlayCnt(String id) {
+	@RequestMapping(method = RequestMethod.GET, value = "/playcnt/{id}")
+	public void addPlayCnt(@PathVariable(value="id") String id) {
 		service.addPlayCnt(Integer.parseInt(id.replaceAll("id=", "")));
 	}
 
-	@RequestMapping(method = RequestMethod.GET, path = "/likecnt", value = "/{id}")
-	public void addLikeCnt(String id) {
+	@RequestMapping(method = RequestMethod.GET, value = "/likecnt/{id}")
+	public void addLikeCnt(@PathVariable(value="id") String id) {
 		service.addLikeCnt(Integer.parseInt(id.replaceAll("id=", "")));
 	}
 
-	@RequestMapping(method = RequestMethod.GET, path = "/unlikecnt", value = "/{id}")
-	public void removeLikeCnt(String id) {
+	@RequestMapping(method = RequestMethod.GET, value = "/unlikecnt/{id}")
+	public void removeLikeCnt(@PathVariable(value="id") String id) {
 		service.removeLikeCnt(Integer.parseInt(id.replaceAll("id=", "")));
 	}
 	
