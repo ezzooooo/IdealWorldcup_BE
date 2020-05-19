@@ -6,9 +6,10 @@ public class TournamentVO {
 	String title; 
 	String intro; 
 	String category; 
-	String isPrivate;
+	Boolean isPrivate;
 	int like_cnt; 
 	int play_cnt;
+	String sortBy; 
 	
 	public int getId() {
 		return id;
@@ -40,10 +41,10 @@ public class TournamentVO {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public String getIsPrivate() {
+	public Boolean getIsPrivate() {
 		return isPrivate;
 	}
-	public void setIsPrivate(String isPrivate) {
+	public void setIsPrivate(Boolean isPrivate) {
 		this.isPrivate = isPrivate;
 	}
 	public int getLike_cnt() {
