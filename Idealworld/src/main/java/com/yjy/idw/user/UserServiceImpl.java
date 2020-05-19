@@ -1,4 +1,4 @@
-package com.yjy.idw;
+package com.yjy.idw.user;
 
 import java.util.List;
 
