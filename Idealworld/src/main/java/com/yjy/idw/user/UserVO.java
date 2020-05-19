@@ -1,4 +1,4 @@
-package com.yjy.idw;
+package com.yjy.idw.user;
 
 public class UserVO {
 	int id; 
