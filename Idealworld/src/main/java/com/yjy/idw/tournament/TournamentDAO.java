@@ -3,6 +3,8 @@ package com.yjy.idw.tournament;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -70,5 +72,48 @@ public class TournamentDAO {
 		} finally {
 			JDBCUtil.close(stmt, conn);
 		}
+	}
+	
+	//토너먼트 목록 조회 
+	//만약 title이 null이면 category로 검색된 상태
+	//만약 category가 null이면 title로 검색된 상태
+	//만약 그 외의 상황이면 모든 tournament가 검색된 상태
+	public List<TournamentVO> getTournamentList(String title, String category, String sortBy) {
+		List<TournamentVO> tournamentList = new ArrayList<>();
+		
+		try {
+			conn = JDBCUtil.getConnection();
+			
+			if(title == null) {
+				stmt = conn.prepareStatement(TOURNAMENT_LIST_GET_C);
+				stmt.setString(1, category);
+			}
+			else if(category == null) {
+				stmt = conn.prepareStatement(TOURNAMENT_LIST_GET_T + " " + sortBy);
+				stmt.setString(1, title);
+			}
+			else {
+				stmt = conn.prepareStatement(TOURNAMENT_LIST_GET_A);
+			}
+			
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				TournamentVO tournament = new TournamentVO(); 
+				tournament.setId(rs.getInt("ID"));
+				tournament.setUser_id(rs.getInt("user_id"));
+				tournament.setTitle(rs.getString("title"));
+				tournament.setIntro(rs.getString("intro"));
+				tournament.setCategory(rs.getString("category"));
+				tournament.setLike_cnt(rs.getInt("like_cnt"));
+				tournament.setPlay_cnt(rs.getInt("play_cnt"));
+				tournamentList.add(tournament);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(rs, stmt, conn); 
+		}
+		
+		return tournamentList; 
 	}
 }

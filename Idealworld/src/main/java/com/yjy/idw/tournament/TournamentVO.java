@@ -9,7 +9,6 @@ public class TournamentVO {
 	Boolean isPrivate;
 	int like_cnt; 
 	int play_cnt;
-	String sortBy; 
 	
 	public int getId() {
 		return id;
