@@ -1,7 +1,5 @@
 package com.yjy.idw.controller;
-/**
- * url : localhost:8080/images
- */
+
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;

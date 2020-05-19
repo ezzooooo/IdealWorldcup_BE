@@ -12,11 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.yjy.idw.user.UserService;
 import com.yjy.idw.user.UserVO;
-/**
- * url : localhost:8080/users/{id}
- * @author yunbok
- *
- */
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
