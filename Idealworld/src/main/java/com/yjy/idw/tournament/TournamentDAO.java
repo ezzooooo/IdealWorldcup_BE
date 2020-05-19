@@ -27,7 +27,7 @@ public class TournamentDAO {
 	private final String TOURNAMENT_LIST_GET_C =
 			"select * from TOURNAMENT where category like ? order by play_cnt"; 
 	private final String TOURNAMENT_INSERT =
-			"insert into TOURNAMENT(id, user_id, title, intro, category, isprivate, like_cnt, play_cnt) values((select nvl(max(id),0)+1 from TOURNAMENT),?,?,?,?,?,?,?)";
+			"insert into TOURNAMENT(id, user_id, title, intro, category, isprivate) values((select ifnull(max(id),0)+1 from TOURNAMENT a),?,?,?,?,?)";
 	private final String TOURNAMENT_DELETE =
 			"delete TOURNAMENT where id=?";
 	private final String TOURNAMENT_LIKECNT_ADD =
@@ -47,10 +47,7 @@ public class TournamentDAO {
 			stmt.setString(2, vo.getTitle());
 			stmt.setString(3, vo.getIntro());
 			stmt.setString(4, vo.getCategory());
-			stmt.setBoolean(5, vo.getIsPrivate());
-			// DB 테이블 default 0 으로 수정해야함 
-			stmt.setInt(6, 0);
-			stmt.setInt(7, 0);
+			stmt.setInt(5, vo.getIsPrivate());
 			stmt.executeUpdate(); 
 		} catch (Exception e) {
 			e.printStackTrace();

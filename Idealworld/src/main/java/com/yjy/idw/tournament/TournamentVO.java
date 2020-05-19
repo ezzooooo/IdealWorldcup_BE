@@ -6,7 +6,7 @@ public class TournamentVO {
 	String title; 
 	String intro; 
 	String category; 
-	Boolean isPrivate;
+	int isPrivate;
 	int like_cnt; 
 	int play_cnt;
 	
@@ -40,10 +40,10 @@ public class TournamentVO {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public Boolean getIsPrivate() {
+	public int getIsPrivate() {
 		return isPrivate;
 	}
-	public void setIsPrivate(Boolean isPrivate) {
+	public void setIsPrivate(int isPrivate) {
 		this.isPrivate = isPrivate;
 	}
 	public int getLike_cnt() {
