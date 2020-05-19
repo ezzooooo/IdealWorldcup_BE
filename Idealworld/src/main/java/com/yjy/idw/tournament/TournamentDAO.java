@@ -17,7 +17,7 @@ public class TournamentDAO {
 	private PreparedStatement stmt = null; 
 	private ResultSet rs = null;
 	
-	//SQL 명령어
+	//SQL 명령어		
 	private final String TOURNAMENT_GET = 
 			"select * from TOURNAMENT where id=?";
 	private final String TOURNAMENT_LIST_GET_A =
@@ -38,7 +38,7 @@ public class TournamentDAO {
 			"update TOURNAMENT set play_cnt=play_cnt+1";
 	
 	//토너먼트 등록
-	public void insetTournament(TournamentVO vo) {
+	public void insertTournament(TournamentVO vo) {
 		System.out.println("===> JDBC로 insertTournament() 기능 처리");
 		try {
 			conn = JDBCUtil.getConnection(); 
