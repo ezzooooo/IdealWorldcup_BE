@@ -79,6 +79,7 @@ public class TournamentDAO {
 	//만약 category가 null이면 title로 검색된 상태
 	//만약 그 외의 상황이면 모든 tournament가 검색된 상태
 	public List<TournamentVO> getTournamentList(String title, String category, String sortBy) {
+		System.out.println("===> JDBC로 getTournamentList() 기능 처리"); 
 		List<TournamentVO> tournamentList = new ArrayList<>();
 		
 		try {
@@ -115,5 +116,77 @@ public class TournamentDAO {
 		}
 		
 		return tournamentList; 
+	}
+	
+	//토너먼트 상세 조회
+	public TournamentVO getTournament(int id) {
+		System.out.println("===> JDBC로 getTournament() 기능 처리");
+		TournamentVO tournament = new TournamentVO();
+		try {
+			conn = JDBCUtil.getConnection();
+			stmt = conn.prepareStatement(TOURNAMENT_GET);
+			stmt.setInt(1, id); 
+			rs = stmt.executeQuery();
+			if(rs.next()) {
+				tournament.setId(rs.getInt("ID"));
+				tournament.setUser_id(rs.getInt("user_id"));
+				tournament.setTitle(rs.getString("title"));
+				tournament.setIntro(rs.getString("intro"));
+				tournament.setCategory(rs.getString("category"));
+				tournament.setLike_cnt(rs.getInt("like_cnt"));
+				tournament.setPlay_cnt(rs.getInt("play_cnt"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(rs, stmt, conn);
+		}
+	
+		return tournament;
+	}
+	
+	//토너먼트 플레이 횟수 증가
+	public void addPlayCnt(int id) {
+		System.out.println("===> JDBC로 addPlayCnt() 기능 처리");
+		try {
+			conn = JDBCUtil.getConnection();
+			stmt = conn.prepareStatement(TOURNAMENT_LIKECNT_ADD);
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(stmt, conn);
+		}
+	}
+	
+	//토너먼트 좋아요 횟수 추가 
+	public void addLikeCnt(int id) {
+		System.out.println("===> JDBC로 addPlayCnt() 기능 처리");
+		try {
+			conn = JDBCUtil.getConnection();
+			stmt = conn.prepareStatement(TOURNAMENT_LIKECNT_REMOVE);
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(stmt, conn);
+		}
+	}
+	
+	//토너먼트 좋아요 횟수 감소 
+	public void removeLikeCnt(int id) {
+		System.out.println("===> JDBC로 addPlayCnt() 기능 처리");
+		try {
+			conn = JDBCUtil.getConnection();
+			stmt = conn.prepareStatement(TOURNAMENT_PLAYCNT_ADD);
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(stmt, conn);
+		}
 	}
 }
