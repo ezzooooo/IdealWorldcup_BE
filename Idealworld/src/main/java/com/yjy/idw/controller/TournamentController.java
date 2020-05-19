@@ -1,6 +1,5 @@
 package com.yjy.idw.controller;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +52,5 @@ public class TournamentController {
 	public void removeLikeCnt(@PathVariable(value="id") String id) {
 		service.removeLikeCnt(Integer.parseInt(id.replaceAll("id=", "")));
 	}
-	
-}
+}	
+
