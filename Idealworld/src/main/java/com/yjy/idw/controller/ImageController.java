@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.yjy.idw.aws.S3;
 import com.yjy.idw.image.ImageService;
 import com.yjy.idw.image.ImageVO;
 
@@ -24,12 +25,11 @@ public class ImageController {
 		return "mainpage.html";
 	}
 	
-	@RequestMapping(value="/fileupload.do",  method={RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/fileupload.do",  method=RequestMethod.POST)
 	@ResponseBody
 	public String uploadImage(@RequestParam("uploadFile") MultipartFile uploadFile, ImageVO vo) throws IOException {
-		System.out.println("여기1");
-		imageService.insertImage(vo, uploadFile);
-		System.out.println("여기2");
+		imageService.insertImage(vo);
+		S3.ImageUpload(uploadFile);
 		return "/";
 	}
 }

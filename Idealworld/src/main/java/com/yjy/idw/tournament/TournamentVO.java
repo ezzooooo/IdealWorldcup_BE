@@ -7,6 +7,7 @@ public class TournamentVO {
 	String intro; 
 	String category; 
 	int isPrivate;
+	String passwd;
 	int like_cnt; 
 	int play_cnt;
 	
@@ -45,6 +46,12 @@ public class TournamentVO {
 	}
 	public void setIsPrivate(int isPrivate) {
 		this.isPrivate = isPrivate;
+	}
+	public String getPasswd() {
+		return passwd;
+	}
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
 	}
 	public int getLike_cnt() {
 		return like_cnt;
