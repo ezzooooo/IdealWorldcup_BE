@@ -10,14 +10,15 @@ import com.yjy.idw.common.JDBCUtil;
 
 @Repository("imageDAO")
 public class ImageDAO {
-	// JDBC 관련 변수 
+		// JDBC 관련 변수 
 		private Connection conn = null; 
 		private PreparedStatement stmt = null; 
 		private ResultSet rs = null;
 		
 		//SQL 명령어 
 		private final String IMAGE_INSERT = 
-				"insert into IMAGE(id, tournament_id, name, URL, win_cnt) values((select ifnull(max(id),0)+1 from IMAGE a), ?, ?, ?, ?)";
+				"insert into IMAGE(id, tournament_id, name, URL, win_cnt) "
+				+ "values((select ifnull(max(id),0)+1 from IMAGE a), ?, ?, ?, ?)";
 		
 		public void insertImage(ImageVO vo) {
 			System.out.println("=> 이미지 업로드");
