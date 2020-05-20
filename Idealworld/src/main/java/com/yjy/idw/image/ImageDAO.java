@@ -17,7 +17,7 @@ public class ImageDAO {
 		
 		//SQL 명령어 
 		private final String IMAGE_INSERT = 
-				"insert into image(path) values(?)";
+				"insert into IMAGE(id, tournament_id, name, URL, win_cnt) values((select ifnull(max(id),0)+1 from IMAGE a), ?, ?, ?, ?)";
 		
 		public void insertImage(ImageVO vo) {
 			System.out.println("=> 이미지 업로드");
@@ -25,7 +25,10 @@ public class ImageDAO {
 			try {
 				conn = JDBCUtil.getConnection();
 				stmt = conn.prepareStatement(IMAGE_INSERT);
-				stmt.setString(1, vo.getPath());
+				stmt.setInt(1, 1);
+				stmt.setString(2, vo.getName());
+				stmt.setString(3, vo.getURL());
+				stmt.setInt(4, 0);
 				stmt.executeUpdate();
 			} catch (Exception e) {
 				e.printStackTrace();

@@ -1,15 +1,15 @@
 package com.yjy.idw.tournament;
 
 public class TournamentVO {
-	int id; 
-	int user_id; 
-	String title; 
-	String intro; 
-	String category; 
-	int isPrivate;
-	String passwd;
-	int like_cnt; 
-	int play_cnt;
+	private int id; 
+	private int user_id; 
+	private String title; 
+	private String intro; 
+	private String category; 
+	private int isPrivate;
+	private String passwd;
+	private int like_cnt; 
+	private int play_cnt;
 	
 	public int getId() {
 		return id;

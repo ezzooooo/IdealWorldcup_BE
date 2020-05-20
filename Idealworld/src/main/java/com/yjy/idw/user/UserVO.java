@@ -1,8 +1,8 @@
 package com.yjy.idw.user;
 
 public class UserVO {
-	int id; 
-	String nickname;
+	private int id; 
+	private String nickname;
 	
 	public int getId() {
 		return id;
