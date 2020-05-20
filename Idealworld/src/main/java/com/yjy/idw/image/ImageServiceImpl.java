@@ -1,16 +1,18 @@
 package com.yjy.idw.image;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
 
 @Service("imageService")
 public class ImageServiceImpl implements ImageService {
-	@Autowired
-	private ImageDAO imageDAO;
+	
+	String resource = "src/main/resources/config/mybatis-config.xml";
+	
+	private SqlSession sqlSession;
 	
 	@Override
 	public void insertImage(ImageVO vo) {
-		imageDAO.insertImage(vo);
+		sqlSession.insert("com.yjy.idw.imageMapper.insertImage", vo);
 	}
 }

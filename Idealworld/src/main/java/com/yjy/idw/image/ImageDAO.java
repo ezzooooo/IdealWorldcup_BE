@@ -1,15 +1,10 @@
 package com.yjy.idw.image;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
 import org.springframework.stereotype.Repository;
 
-import com.yjy.idw.common.JDBCUtil;
-
 @Repository("imageDAO")
-public class ImageDAO {
+public interface ImageDAO {
+		/*
 		// JDBC 관련 변수 
 		private Connection conn = null; 
 		private PreparedStatement stmt = null; 
@@ -37,4 +32,6 @@ public class ImageDAO {
 				JDBCUtil.close(stmt, conn);
 			}
 		}
+		*/
+	public void insertImage(ImageVO vo);
 }

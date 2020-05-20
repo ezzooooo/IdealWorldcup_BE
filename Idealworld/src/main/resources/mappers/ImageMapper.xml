@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.yjy.idw.imageMapper">
+    <insert id="insertImage" parameterType="com.yjy.idw.image.ImageVO">
+        insert into IMAGE(id, tournament_id, name, URL, win_cnt)
+        values(#{id}, #{tournament_id},#{name},#{URL},#{win_cnt})
+    </insert>
+</mapper>
