@@ -27,7 +27,7 @@ public class ImageController {
 	
 	@RequestMapping(value="/fileupload.do",  method=RequestMethod.POST)
 	@ResponseBody
-	public String uploadImage(@RequestParam("uploadFile") MultipartFile uploadFile, ImageVO vo) throws IOException {
+	public String uploadImage(ImageVO vo, @RequestParam("uploadFile") MultipartFile uploadFile) throws IOException {
 		imageService.insertImage(vo);
 		S3.ImageUpload(uploadFile);
 		return "/";
