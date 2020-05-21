@@ -81,17 +81,16 @@ public class TournamentDAO {
 		
 		try {
 			conn = JDBCUtil.getConnection();
-			
-			if(title == null && category != null) {
-				stmt = conn.prepareStatement(TOURNAMENT_LIST_GET_C);
-				stmt.setString(1, category);
-			}
-			else if(category == null && title != null) {
+			if(title != null && category == null) {
 				stmt = conn.prepareStatement(TOURNAMENT_LIST_GET_T + " " + sortBy);
 				stmt.setString(1, title);
 			}
+			else if(category != null && title == null) {
+				stmt = conn.prepareStatement(TOURNAMENT_LIST_GET_C); 
+				stmt.setString(1, category);
+			}
 			else {
-				stmt = conn.prepareStatement(TOURNAMENT_LIST_GET_A);
+				stmt = conn.prepareStatement(TOURNAMENT_LIST_GET_A); 
 			}
 			
 			rs = stmt.executeQuery();

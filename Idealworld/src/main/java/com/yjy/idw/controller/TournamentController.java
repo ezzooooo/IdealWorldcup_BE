@@ -29,8 +29,11 @@ public class TournamentController {
 
 	// 잠시 김보류 
 	@RequestMapping(method = RequestMethod.GET, value = "")
-	public List<TournamentVO> getTournamentList(String title, String category, String sortBy) {
-		return service.getTournamentList(title, category, sortBy);
+	public List<TournamentVO> getTournamentListByTitle(
+			@PathVariable(value="title") String title,
+			@PathVariable(value="sortby") String sortBy,
+			@PathVariable(value="category") String category) {
+		return service.getTournamentList(title, sortBy, category);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
