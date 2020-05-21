@@ -72,8 +72,8 @@ public class TournamentDAO {
 	}
 	
 	//토너먼트 목록 조회 
-	//만약 title이 null이면 category로 검색된 상태
-	//만약 category가 null이면 title로 검색된 상태
+	//만약 title이 입력되지 않았으면 category로 검색된 상태
+	//만약 category가 입력되지 않았으면 title로 검색된 상태 
 	//만약 그 외의 상황이면 모든 tournament가 검색된 상태
 	public List<TournamentVO> getTournamentList(String title, String category, String sortBy) {
 		System.out.println("===> JDBC로 getTournamentList() 기능 처리"); 
@@ -81,17 +81,16 @@ public class TournamentDAO {
 		
 		try {
 			conn = JDBCUtil.getConnection();
-			
-			if(title == null && category != null) {
-				stmt = conn.prepareStatement(TOURNAMENT_LIST_GET_C);
-				stmt.setString(1, category);
-			}
-			else if(category == null && title != null) {
-				stmt = conn.prepareStatement(TOURNAMENT_LIST_GET_T + " " + sortBy);
+			if(title.length() > 0 && category.length() <= 0) {
+				stmt = conn.prepareStatement(TOURNAMENT_LIST_GET_T + " " + sortBy+ " DESC");
 				stmt.setString(1, title);
 			}
+			else if(category.length() > 0  && title.length() <= 0) {
+				stmt = conn.prepareStatement(TOURNAMENT_LIST_GET_C); 
+				stmt.setString(1, category);
+			}
 			else {
-				stmt = conn.prepareStatement(TOURNAMENT_LIST_GET_A);
+				stmt = conn.prepareStatement(TOURNAMENT_LIST_GET_A); 
 			}
 			
 			rs = stmt.executeQuery();
