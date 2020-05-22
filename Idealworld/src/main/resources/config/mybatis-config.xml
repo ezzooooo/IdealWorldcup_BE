@@ -19,6 +19,7 @@
   <mappers>
   	<mapper class="com.yjy.idw.image.ImageDAO"/>
     <mapper resource="mappers/ImageMapper.xml"/>
+    <mapper class="com.yjy.idw.user.UserDAO"/>
+  	<mapper resource="mappers/UserMapper.xml"/>
   </mappers>
-  
 </configuration>
