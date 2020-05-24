@@ -15,7 +15,8 @@ public class ImageServiceImpl implements ImageService {
 	
 	@Override
 	public int insertImage(ImageVO vo) {
-		System.out.println("여기1");
+		
+		int rs;
 		
 		String resource = "config/mybatis-config.xml";
 		InputStream inputStream = null;
@@ -29,13 +30,11 @@ public class ImageServiceImpl implements ImageService {
 		try(SqlSession session = sqlSessionFactory.openSession()) {
 			
 			ImageDAO image = session.getMapper(ImageDAO.class);
-			image.insertImage(vo);
+			rs = image.insertImage(vo);
 			session.commit();
 			session.close();
 		}
 		
-		System.out.println("여기2");
-		
-		return 1;
+		return rs;
 	}
 }
