@@ -1,3 +1,5 @@
 ## IdealWorldcup Ignore File ##
 
 *.properties
+application.properties
+mybatis-config.properties
