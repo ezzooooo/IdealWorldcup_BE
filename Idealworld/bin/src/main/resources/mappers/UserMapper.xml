@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.yjy.idw.user.UserDAO">
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
+        insert into USER(id, nickname)
+        values((select ifnull(max(id),0)+1 from USER a), #{nickname})
+    </insert>
+    
+    <delete id="deleteUser">
+    	delete USER where id=#{id}
+    </delete>
+    
+    <select id="getUser" resultType="com.yjy.idw.user.UserVO">
+    	select * from USER where id=#{id} 
+    </select>
+    
+    <select id="getUserList" resultType="com.yjy.idw.user.UserVO">
+    	select * from USER
+    </select>
+    
+</mapper>
