@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.yjy.idw.tournament.TournamentDAO">
+    <insert id="insertTournament" useGeneratedKeys="true" keyProperty="id">
+        insert into TOURNAMENT(user_id, title, intro, category, isprivate)
+        values(#{user_id},#{title},#{intro},#{category},#{isprivate})
+    </insert>
+    
+    <delete id="deleteTournament">
+		delete TOURNAMENT where id=#{id}
+    </delete>
+    
+    <select id="getTournament" resultType="com.yjy.idw.tournament.TournamentVO">
+    	select * from TOURNAMENT where id=#{id} 
+    </select>
+    
+    <select id="getTournamentList" resultType="com.yjy.idw.tournament.TournamentVO">
+    	select * from TOURNAMENT
+    	WHERE 1 = 1
+    	<if test="category == null">
+    		<if test="title != null">
+    		and title like '%'||#{title}||'%'  order by #{sortBy} DESC
+    		</if>
+    	</if>
+    	<if test="title == null">
+    		<if test="category != null">
+    		and category like #{category} order by play_cnt DESC
+    		</if>
+    	</if>
+    </select>
+    
+    <select id="addPlayCnt">
+    	update TOURNAMENT set play_cnt=play_cnt+1 where id=#{id}
+    </select>
+
+    <select id="addLikeCnt">
+		update TOURNAMENT set like_cnt=like_cnt+1 where id=#{id}    
+    </select>
+    
+    <select id="removeLikeCnt">
+    	update TOURNAMENT set like_cnt=like_cnt-1 where id=#{id}   
+    </select>
+</mapper>

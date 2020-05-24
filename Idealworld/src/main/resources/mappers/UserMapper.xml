@@ -4,7 +4,7 @@
 <mapper namespace="com.yjy.idw.user.UserDAO">
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
         insert into USER(id, nickname)
-        values((select ifnull(max(id),0)+1 from USER a), #{nickname})
+        values(#{nickname})
     </insert>
     
     <delete id="deleteUser">

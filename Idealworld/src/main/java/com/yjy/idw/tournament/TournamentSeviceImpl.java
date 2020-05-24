@@ -2,50 +2,50 @@ package com.yjy.idw.tournament;
 
 import java.util.List;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("tournamentService")
 public class TournamentSeviceImpl implements TournamentService {
-	
-	@Autowired 
-	TournamentDAO tournamentDAO;
+	@Autowired
+	SqlSessionTemplate sqlSessionTemplate;
 	
 	@Override
 	public void insertTournament(TournamentVO vo) {
-		tournamentDAO.insertTournament(vo);
+		sqlSessionTemplate.insert("insertTournament", vo);
 	}
 
 	@Override
 	public void deleteTournament(int id) {
-		tournamentDAO.deleteTournament(id);
+		sqlSessionTemplate.delete("deleteTournament", id);
 	}
 
 	@Override
-	public List<TournamentVO> getTournamentList(String title, String category, String sortBy) {
-		// TODO Auto-generated method stub
-		return tournamentDAO.getTournamentList(title, category, sortBy);
+	public List<TournamentVO> getTournamentList(TournamentVO vo) {
+		List<TournamentVO> tournamentList = sqlSessionTemplate.selectList("getTournamentList", vo);
+		return tournamentList;
 	}
 
 	@Override
 	public TournamentVO getTournament(int id) {
-		// TODO Auto-generated method stub
-		return tournamentDAO.getTournament(id);
+		TournamentVO tournament = sqlSessionTemplate.selectOne("getTournament", id);
+		return tournament;
 	}
 
 	@Override
 	public void addPlayCnt(int id) {
-		tournamentDAO.addPlayCnt(id);
+		sqlSessionTemplate.update("addPlayCnt");
 	}
 
 	@Override
 	public void addLikeCnt(int id) {
-		tournamentDAO.addLikeCnt(id);
+		sqlSessionTemplate.update("addLikeCnt");
 	}
 
 	@Override
 	public void removeLikeCnt(int id) {
-		tournamentDAO.removeLikeCnt(id);
+		sqlSessionTemplate.update("removeLikeCnt");
 	}
 
 }

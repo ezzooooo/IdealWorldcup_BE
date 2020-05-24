@@ -21,10 +21,7 @@ public interface UserDAO {
 	
 
 	public List<UserVO> getUserList(); 
-	
 	public void insertUser(UserVO vo);
-	
 	public UserVO getUser(int id); 
-	
 	public void deleteUser(int id);
 }

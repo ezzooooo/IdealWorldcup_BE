@@ -14,7 +14,7 @@ public interface TournamentService {
 	//만약 title이 null이면 category로 검색된 상태
 	//만약 category가 null이면 title로 검색된 상태
 	//만약 그 외의 상황이면 모든 tournament가 검색된 상태
-	List<TournamentVO> getTournamentList(String title, String category, String sortBy);
+	List<TournamentVO> getTournamentList(TournamentVO vo);
 
 	//토너먼트 상세 조회
 	TournamentVO getTournament(int id);
