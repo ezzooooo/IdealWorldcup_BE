@@ -28,7 +28,6 @@ public class TournamentController {
 		service.deleteTournament(Integer.parseInt(id.replaceAll("id=", "")));
 	}
 
-	// 잠시 김보류 
 	@RequestMapping(method = RequestMethod.GET, value = "")
 	public List<TournamentVO> getTournamentListByTitle(
 			@RequestParam(value="title", required=false, defaultValue="") String title,
@@ -42,17 +41,17 @@ public class TournamentController {
 		return service.getTournament(Integer.parseInt(id));
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/playcnt/{id}")
+	@RequestMapping(method = RequestMethod.PUT, value = "/playcnt/{id}")
 	public void addPlayCnt(@PathVariable(value="id") String id) {
 		service.addPlayCnt(Integer.parseInt(id));
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/likecnt/{id}")
+	@RequestMapping(method = RequestMethod.PUT, value = "/likecnt/{id}")
 	public void addLikeCnt(@PathVariable(value="id") String id) {
 		service.addLikeCnt(Integer.parseInt(id));
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/unlikecnt/{id}")
+	@RequestMapping(method = RequestMethod.PUT, value = "/unlikecnt/{id}")
 	public void removeLikeCnt(@PathVariable(value="id") String id) {
 		service.removeLikeCnt(Integer.parseInt(id));
 	}
