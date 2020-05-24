@@ -15,6 +15,7 @@ import com.yjy.idw.tournament.TournamentVO;
 @RestController
 @RequestMapping("/tournaments")
 public class TournamentController {
+	@Autowired
 	TournamentService service;
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -28,11 +29,8 @@ public class TournamentController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "")
-	public List<TournamentVO> getTournamentListByTitle(
-			@RequestParam(value="title", required=false, defaultValue="") String title,
-			@RequestParam(value="sortby", required=false, defaultValue="") String sortBy,
-			@RequestParam(value="category", required=false, defaultValue="") String category) {
-		return service.getTournamentList(title, category, sortBy);
+	public List<TournamentVO> getTournamentListByTitle(TournamentVO vo) {
+		return service.getTournamentList(vo);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")

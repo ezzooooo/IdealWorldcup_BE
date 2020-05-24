@@ -10,6 +10,7 @@ public class TournamentVO {
 	private String passwd;
 	private int like_cnt; 
 	private int play_cnt;
+	private String sortBy;
 	
 	public int getId() {
 		return id;
@@ -64,5 +65,11 @@ public class TournamentVO {
 	}
 	public void setPlay_cnt(int play_cnt) {
 		this.play_cnt = play_cnt;
+	}
+	public String getSortBy() {
+		return sortBy;
+	}
+	public void setSortBy(String sortBy) {
+		this.sortBy = sortBy;
 	} 
 }
