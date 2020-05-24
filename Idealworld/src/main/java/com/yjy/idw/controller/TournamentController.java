@@ -15,7 +15,6 @@ import com.yjy.idw.tournament.TournamentVO;
 @RestController
 @RequestMapping("/tournaments")
 public class TournamentController {
-	@Autowired
 	TournamentService service;
 
 	@RequestMapping(method = RequestMethod.POST)

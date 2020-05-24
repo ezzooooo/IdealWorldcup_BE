@@ -7,8 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service("tournamentService")
 public class TournamentSeviceImpl implements TournamentService {
-	
-	@Autowired 
+	@Autowired
 	TournamentDAO tournamentDAO;
 	
 	@Override
