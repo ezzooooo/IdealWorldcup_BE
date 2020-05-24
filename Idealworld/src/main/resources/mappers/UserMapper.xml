@@ -11,11 +11,11 @@
     	delete USER where id=#{id}
     </delete>
     
-    <select id="getUser" resultType="UserVO">
+    <select id="getUser" resultType="com.yjy.idw.user.UserVO">
     	select * from USER where id=#{id} 
     </select>
     
-    <select id="getUserList" resultType="UserVO">
+    <select id="getUserList" resultType="com.yjy.idw.user.UserVO">
     	select * from USER
     </select>
     
