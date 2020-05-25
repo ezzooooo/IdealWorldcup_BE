@@ -20,14 +20,6 @@
     	</if>
     </select>
     
-    <select id="getImageListForTournament" resultType="com.yjy.idw.image.ImageVO">
-    	select * 
-    	from IMAGE
-    	where tournament_id = #{tournament_id}
-    	order by rand()
-    	limit #{round}
-    </select>
-    
     <update id="addWinCnt">
     	update IMAGE 
     	set win_cnt=win_cnt+1
