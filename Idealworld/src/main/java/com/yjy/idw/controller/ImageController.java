@@ -28,7 +28,7 @@ public class ImageController {
 		S3.ImageUpload(uploadFile);
 	}
 	
-	@RequestMapping(value="", method=RequestMethod.GET)
+	@RequestMapping(value="getImageList", method=RequestMethod.GET)
 	@ResponseBody
 	public List<ImageVO> getImageList(ImageVO vo) {
 		return imageService.getImageList(vo);
