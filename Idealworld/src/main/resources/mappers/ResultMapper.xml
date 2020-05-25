@@ -8,10 +8,11 @@
     </insert>
     
     <select id="getResult" resultType="com.yjy.idw.result.ResultVO">
-    	select * from RESULT where first_image_id = #{first_image_id} AND second_image_id = #{second_image_id}
+    	select * from RESULT 
+    	where first_image_id = #{first_image_id} AND second_image_id = #{second_image_id}
     </select>
     
-    <update id="getTournamentList">
+    <update id="updateResult">
     	update RESULT set 
     	<if test="winner == 'first'">
 			first_win_cnt = first_win_cnt + 1

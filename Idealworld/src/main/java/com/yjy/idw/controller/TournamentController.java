@@ -25,11 +25,11 @@ public class TournamentController {
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
 	public void deleteTournament(@PathVariable(value="id") String id) {
-		service.deleteTournament(Integer.parseInt(id.replaceAll("id=", "")));
+		service.deleteTournament(Integer.parseInt(id));
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "")
-	public List<TournamentVO> getTournamentListByTitle(TournamentVO vo) {
+	@RequestMapping(method = RequestMethod.GET)
+	public List<TournamentVO> getTournamentList(TournamentVO vo) {
 		return service.getTournamentList(vo);
 	}
 

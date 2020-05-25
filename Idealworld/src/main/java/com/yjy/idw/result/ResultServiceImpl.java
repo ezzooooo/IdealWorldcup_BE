@@ -18,6 +18,12 @@ public class ResultServiceImpl implements ResultService {
 	@Override
 	public int updateResult(ResultVO vo) {
 		return sqlSessionTemplate.update("updateResult", vo);
+	}
+
+	@Override
+	public ResultVO getResult(ResultVO vo) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("getResult", vo);
 	} 
 	
 	

@@ -2,6 +2,7 @@ package com.yjy.idw.image;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -33,5 +34,17 @@ public class ImageServiceImpl implements ImageService {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public List<ImageVO> getImageList(ImageVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addWinCnt(int id) {
+		// TODO Auto-generated method stub
+		
 	}
 }

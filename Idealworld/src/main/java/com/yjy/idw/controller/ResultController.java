@@ -23,5 +23,10 @@ public class ResultController {
 	public int updateResult(ResultVO vo) {
 		return resultService.updateResult(vo);
 	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public ResultVO getResult(ResultVO vo) {
+		return resultService.getResult(vo);
+	}
 
 }
