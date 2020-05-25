@@ -13,6 +13,11 @@ public class ResultServiceImpl implements ResultService {
 	public int insertResult(ResultVO vo) {
 		int id = sqlSessionTemplate.insert("insertResult", vo);
 		return id;
+	}
+
+	@Override
+	public int updateResult(ResultVO vo) {
+		return sqlSessionTemplate.update("updateResult", vo);
 	} 
 	
 	

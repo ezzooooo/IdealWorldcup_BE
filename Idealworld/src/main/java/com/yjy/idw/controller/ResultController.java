@@ -20,8 +20,8 @@ public class ResultController {
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT) 
-	public int updateWinCnt(ResultVO vo) {
-		
+	public int updateResult(ResultVO vo) {
+		return resultService.updateResult(vo);
 	}
 
 }
