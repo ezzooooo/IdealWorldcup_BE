@@ -10,7 +10,22 @@
     <select id="getImageList" resultType="com.yjy.idw.image.ImageVO">
     	select * 
     	from IMAGE
+    	where 1=1
+    	<if test="tournament_id =! null">
+    		and tournament_id = #{tournament_id}
+    	</if>
+    	<if test="round == null">
+    		order by rand()
+    		limit #{round}
+    	</if>
+    </select>
+    
+    <select id="getImageListForTournament" resultType="com.yjy.idw.image.ImageVO">
+    	select * 
+    	from IMAGE
     	where tournament_id = #{tournament_id}
+    	order by rand()
+    	limit #{round}
     </select>
     
     <update id="addWinCnt">

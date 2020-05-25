@@ -6,6 +6,7 @@ public class ImageVO {
 	private String name;
 	private String URL;
 	private int win_cnt;
+	private int round;
 	
 	public int getId() {
 		return id;
@@ -37,4 +38,12 @@ public class ImageVO {
 	public void setWin_cnt(int win_cnt) {
 		this.win_cnt = win_cnt;
 	}
+	public int getRound() {
+		return round;
+	}
+	public void setRound(int round) {
+		this.round = round;
+	}
+	
+	
 }

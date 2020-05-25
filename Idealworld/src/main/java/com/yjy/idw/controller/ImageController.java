@@ -22,21 +22,16 @@ public class ImageController {
 	@Autowired
 	private ImageService imageService;
 	
-	@RequestMapping(value="",  method=RequestMethod.GET)
-	public String getMainpage() {
-		return "mainpage.html";
-	}
-	
 	@RequestMapping(value="/fileupload.do",  method=RequestMethod.POST)
 	public void insertImage(ImageVO vo, @RequestParam("uploadFile") MultipartFile uploadFile) throws IOException {
 		imageService.insertImage(vo);
 		S3.ImageUpload(uploadFile);
 	}
 	
-	@RequestMapping(value="/{tournament_id}", method=RequestMethod.GET)
+	@RequestMapping(value="", method=RequestMethod.GET)
 	@ResponseBody
-	public List<ImageVO> getListImage(@PathVariable(value="tournament_id") int tournament_id) {
-		return imageService.getImageList(tournament_id);
+	public List<ImageVO> getImageList(ImageVO vo) {
+		return imageService.getImageList(vo);
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, value = "/wincnt/{id}")
