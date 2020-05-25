@@ -8,9 +8,14 @@
     </insert>
     
     <select id="getImageList" resultType="com.yjy.idw.image.ImageVO">
-    	select * from IMAGE
+    	select * 
+    	from IMAGE
     	where tournament_id = #{tournament_id}
     </select>
     
-    
+    <update id="addWinCnt">
+    	update IMAGE 
+    	set win_cnt=win_cnt+1
+    	where id=#{id}
+    </update>
 </mapper>

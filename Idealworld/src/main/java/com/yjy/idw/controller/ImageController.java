@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,27 +17,30 @@ import com.yjy.idw.image.ImageService;
 import com.yjy.idw.image.ImageVO;
 
 @Controller
-//@RequestMapping("/images")
+@RequestMapping("/images")
 public class ImageController {
 	@Autowired
 	private ImageService imageService;
 	
-	@RequestMapping(value="/",  method={RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="",  method=RequestMethod.GET)
 	public String getMainpage() {
 		return "mainpage.html";
 	}
 	
 	@RequestMapping(value="/fileupload.do",  method=RequestMethod.POST)
-	@ResponseBody
-	public String insertImage(ImageVO vo, @RequestParam("uploadFile") MultipartFile uploadFile) throws IOException {
+	public void insertImage(ImageVO vo, @RequestParam("uploadFile") MultipartFile uploadFile) throws IOException {
 		imageService.insertImage(vo);
 		S3.ImageUpload(uploadFile);
-		return "/";
 	}
 	
-	@RequestMapping(value="/image", method=RequestMethod.GET)
+	@RequestMapping(value="/{tournament_id}", method=RequestMethod.GET)
 	@ResponseBody
-	public List<ImageVO> getListImage(int tournament_id) {
+	public List<ImageVO> getListImage(@PathVariable(value="tournament_id") int tournament_id) {
 		return imageService.getImageList(tournament_id);
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, value = "/wincnt/{id}")
+	public void addWinCnt(@PathVariable(value="id") int id) {
+		imageService.addWinCnt(id);
 	}
 }

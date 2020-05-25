@@ -25,4 +25,12 @@ public class ImageServiceImpl implements ImageService {
 		List<ImageVO> imageList = sqlSessionTemplate.selectList("getImageList", tournament_id);
 		return imageList;
 	}
+
+	@Override
+	public void addWinCnt(int id) {
+		System.out.println("----------[우승한 이미지 win_cnt++ 함수 호출]----------");
+		sqlSessionTemplate.update("addWinCnt", id);
+	}
+	
+	
 }
