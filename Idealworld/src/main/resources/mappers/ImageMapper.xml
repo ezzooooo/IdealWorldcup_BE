@@ -7,6 +7,11 @@
         values(#{tournament_id},#{name},#{URL},#{win_cnt})
     </insert>
     
+    <delete id="deleteImage">
+    	delete IMAGE
+    	where id=#{id}
+    </delete>
+    
     <select id="getImageList" resultType="com.yjy.idw.image.ImageVO">
     	select * 
     	from IMAGE

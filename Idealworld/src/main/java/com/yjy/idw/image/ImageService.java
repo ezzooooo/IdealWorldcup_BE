@@ -10,6 +10,11 @@ public interface ImageService {
 	int insertImage(ImageVO vo);
 	
 	/*
+	 * Image를 삭제하는 함수
+	 */
+	int deleteImage(int id);
+	
+	/*
 	 * 토너먼트 id가 일치하는 이미지 목록을 가져오는 함수
 	 * round가 존재할 경우 랜덤으로 round만큼의 이미지만 반환.
 	 */

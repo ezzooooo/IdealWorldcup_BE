@@ -20,6 +20,12 @@ public class ImageServiceImpl implements ImageService {
 	}
 	
 	@Override
+	public int deleteImage(int id) {
+		System.out.println("----------[이미지 Delete 함수 호출]----------");
+		return sqlSessionTemplate.delete("deleteImage", id);
+	}
+	
+	@Override
 	public List<ImageVO> getImageList(ImageVO vo) {
 		System.out.println("----------[토너먼트 ID로 이미지리스트를 가져오는 함수 호출]----------");
 		List<ImageVO> imageList = sqlSessionTemplate.selectList("getImageList", vo);
@@ -31,5 +37,7 @@ public class ImageServiceImpl implements ImageService {
 		System.out.println("----------[우승한 이미지 win_cnt++ 함수 호출]----------");
 		sqlSessionTemplate.update("addWinCnt", id);
 	}
+
+	
 
 }
