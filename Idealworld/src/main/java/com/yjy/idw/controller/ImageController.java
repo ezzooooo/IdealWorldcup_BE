@@ -1,6 +1,7 @@
 package com.yjy.idw.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,9 +28,15 @@ public class ImageController {
 	
 	@RequestMapping(value="/fileupload.do",  method=RequestMethod.POST)
 	@ResponseBody
-	public String uploadImage(ImageVO vo, @RequestParam("uploadFile") MultipartFile uploadFile) throws IOException {
+	public String insertImage(ImageVO vo, @RequestParam("uploadFile") MultipartFile uploadFile) throws IOException {
 		imageService.insertImage(vo);
 		S3.ImageUpload(uploadFile);
 		return "/";
+	}
+	
+	@RequestMapping(value="/image", method=RequestMethod.GET)
+	@ResponseBody
+	public List<ImageVO> getListImage(int tournament_id) {
+		return imageService.getImageList(tournament_id);
 	}
 }
