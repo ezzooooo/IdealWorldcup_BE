@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="com.yjy.idw.image.ImageDAO">
-    <insert id="insertImage">
+    <insert id="insertImage" parameterType="com.yjy.idw.image.ImageVO">
         insert into IMAGE(tournament_id, name, URL, win_cnt)
         values(#{tournament_id},#{name},#{URL},#{win_cnt})
     </insert>
@@ -11,4 +11,6 @@
     	select * from IMAGE
     	where tournament_id = #{tournament_id}
     </select>
+    
+    
 </mapper>
