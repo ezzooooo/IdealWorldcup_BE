@@ -2,8 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="com.yjy.idw.image.ImageDAO">
-    <insert id="insertImage" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertImage" parameterType="com.yjy.idw.image.ImageVO">
         insert into IMAGE(tournament_id, name, URL, win_cnt)
         values(#{tournament_id},#{name},#{URL},#{win_cnt})
     </insert>
+    
+    <delete id="deleteImage">
+    	delete IMAGE
+    	where id=#{id}
+    </delete>
+    
+    <select id="getImageList" resultType="com.yjy.idw.image.ImageVO">
+    	select * 
+    	from IMAGE
+    	where 1=1
+    	<if test="tournament_id =! null">
+    		and tournament_id = #{tournament_id}
+    		order by id
+    	</if>
+    	<if test="round == null">
+    		order by rand(), id
+    		limit #{round}
+    	</if>
+    </select>
+    
+    <update id="addWinCnt">
+    	update IMAGE 
+    	set win_cnt=win_cnt+1
+    	where id=#{id}
+    </update>
 </mapper>

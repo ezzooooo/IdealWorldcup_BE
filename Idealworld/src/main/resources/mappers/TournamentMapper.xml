@@ -30,15 +30,15 @@
     	</if>
     </select>
     
-    <select id="addPlayCnt">
+    <update id="addPlayCnt">
     	update TOURNAMENT set play_cnt=play_cnt+1 where id=#{id}
-    </select>
+    </update>
 
-    <select id="addLikeCnt">
+    <update id="addLikeCnt">
 		update TOURNAMENT set like_cnt=like_cnt+1 where id=#{id}    
-    </select>
+    </update>
     
-    <select id="removeLikeCnt">
+    <update id="removeLikeCnt">
     	update TOURNAMENT set like_cnt=like_cnt-1 where id=#{id}   
-    </select>
+    </update>
 </mapper>
