@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.yjy.idw.result.ResultDAO">
+    <insert id="insertTournament" useGeneratedKeys="true" keyProperty="id">
+        insert into RESULT(first_image_id, second_image_id, first_win_cnt, second_win_cnt)
+        values(#{first_image_id},#{second_image_id},#{first_win_cnt},#{second_win_cnt})
+    </insert>
+    
+    <select id="getResult" resultType="com.yjy.idw.result.ResultVO">
+    	select * from RESULT 
+    	where first_image_id = #{first_image_id} AND second_image_id = #{second_image_id}
+    </select>
+    
+    <update id="updateResult">
+    	update RESULT set 
+    	<if test="winner == 'first'">
+			first_win_cnt = first_win_cnt + 1
+    	</if>
+    	<if test="winner == 'second'">
+    		second_win_cnt = second_win_cnt + 1
+    	</if>
+    </update>
+</mapper>

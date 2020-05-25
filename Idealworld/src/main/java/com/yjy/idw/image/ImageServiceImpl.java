@@ -1,7 +1,6 @@
 package com.yjy.idw.image;
 
 import java.util.List;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +36,4 @@ public class ImageServiceImpl implements ImageService {
 		System.out.println("----------[우승한 이미지 win_cnt++ 함수 호출]----------");
 		sqlSessionTemplate.update("addWinCnt", id);
 	}
-
-	
-
 }
