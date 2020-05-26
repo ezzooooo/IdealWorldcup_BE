@@ -20,5 +20,6 @@
     	<if test="winner == 'second'">
     		second_win_cnt = second_win_cnt + 1
     	</if>
+    	where first_image_id = #{first_image_id} AND second_image_id = #{second_image_id}
     </update>
 </mapper>

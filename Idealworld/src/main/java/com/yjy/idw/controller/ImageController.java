@@ -21,24 +21,45 @@ public class ImageController {
 	@Autowired
 	private ImageService imageService;
 	
+	/**
+	 * 이미지 정보 추가 
+	 * S3에 이미지 업로드
+	 * @param vo ImageVO
+	 * @param uploadFile MultipartFile
+	 * @throws IOException
+	 */
 	@RequestMapping(value="/fileupload.do",  method=RequestMethod.POST)
-	public void insertImage(ImageVO vo, @RequestParam("uploadFile") MultipartFile uploadFile) throws IOException {
+	public void insertImage(ImageVO vo, @RequestParam("uploadFile")MultipartFile uploadFile) throws IOException {
 		imageService.insertImage(vo);
 		S3.ImageUpload(uploadFile);
 	}
 	
+	/**
+	 * 정보에 알맞은 이미지 리스트를 받아옴 
+	 * @param vo ImageVO
+	 * @return List
+	 */
 	@RequestMapping(value="", method=RequestMethod.GET)
 	public List<ImageVO> getImageList(ImageVO vo) {
 		return imageService.getImageList(vo);
 	}
 	
+	/**
+	 * 이미지의 우승 횟수를 증가시킴
+	 * @param id
+	 */
 	@RequestMapping(method = RequestMethod.PUT, value = "/wincnt/{id}")
-	public void addWinCnt(@PathVariable(value="id") int id) {
+	public void addWinCnt(@PathVariable(value="id")int id) {
 		imageService.addWinCnt(id);
 	}
 	
+	/**
+	 * tournament_id에 알맞은 이미지 중에서 우승 횟수가 가장 많은 2개의 이미지 리스트를 받아옴 
+	 * @param tournament_id int
+	 * @return List
+	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/winners/{tournament_id}")
-	public List<ImageVO> getWinnerList(@PathVariable(value="tournament_id") int tournament_id) {
+	public List<ImageVO> getWinnerList(@PathVariable(value="tournament_id")int tournament_id) {
 		return imageService.getWinnerList(tournament_id);
 	}
 }

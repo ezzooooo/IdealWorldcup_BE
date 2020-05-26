@@ -19,24 +19,40 @@ public class UserController {
 	@Autowired(required=true)
 	private UserService userService;
 	
+	/**
+	 * id값에 알맞은 유저 상세 정보를 가져옴 
+	 * @param id int
+	 * @return UserVO
+	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
-	public UserVO getUser(@PathVariable(value="id") String id) {
-		return userService.getUser(Integer.parseInt(id.replaceAll("id=", "")));
+	public UserVO getUser(@PathVariable(value="id")int id) {
+		return userService.getUser(id);
 	}
 	
+	/**
+	 * 모든 유저 정보를 가져옴
+	 * @return List
+	 */
 	@RequestMapping(method = RequestMethod.GET, value = "")
 	public List<UserVO> getUserList() {
 		return userService.getUserList();
 	}
 	
+	/**
+	 * id값에 알맞은 유저를 제거함
+	 * @param id int 
+	 */
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}") 
-	public void deleteUser(String id) {
-		userService.deleteUser(Integer.parseInt(id));
+	public void deleteUser(@PathVariable(value="id")int id) {
+		userService.deleteUser(id);
 	}
 	
+	/**
+	 * 유저 정보를 추가함
+	 * @param vo UserVO
+	 */
 	@RequestMapping(method = RequestMethod.POST) 
-	public String insertUser(UserVO vo) {
+	public void insertUser(UserVO vo) {
 	   	userService.insertUser(vo);
-		return "추가완료";
 	}
 }
