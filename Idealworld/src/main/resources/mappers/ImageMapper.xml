@@ -26,11 +26,11 @@
     	</if>
     </select>
     
-    <select id="getWinners" resultType="com.yjy.idw.image.ImageVO">
-    	SELECT * 
-    	FROM IMAGE 
-    	WHERE TOURNAMENT_ID = #{tournament_id} 
-    	ORDER BY WIN_CNT DESC LIMIT 2;
+    <select id="getWinnerList" resultType="com.yjy.idw.image.ImageVO">
+    	select * 
+    	from IMAGE
+    	where tournament_id = #{tournament_id} 
+    	order by win_cnt desc limit 2
     </select>
     
     <update id="addWinCnt">

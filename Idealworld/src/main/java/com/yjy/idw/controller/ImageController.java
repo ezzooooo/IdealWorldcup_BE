@@ -4,19 +4,18 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.yjy.idw.aws.S3;
 import com.yjy.idw.image.ImageService;
 import com.yjy.idw.image.ImageVO;
 
-@Controller
+@RestController
 @RequestMapping("/images")
 public class ImageController {
 	@Autowired
@@ -29,7 +28,6 @@ public class ImageController {
 	}
 	
 	@RequestMapping(value="", method=RequestMethod.GET)
-	@ResponseBody
 	public List<ImageVO> getImageList(ImageVO vo) {
 		return imageService.getImageList(vo);
 	}
@@ -40,7 +38,7 @@ public class ImageController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/winners/{tournament_id}")
-	public List<ImageVO> getWinners(@PathVariable(value="tournament_id") int tournament_id) {
-		
+	public List<ImageVO> getWinnerList(@PathVariable(value="tournament_id") int tournament_id) {
+		return imageService.getWinnerList(tournament_id);
 	}
 }

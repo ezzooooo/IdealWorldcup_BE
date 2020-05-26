@@ -24,4 +24,9 @@ public interface ImageService {
 	 * 우승한 이미지 Win_Cnt + 1 해주는 함수
 	 */
 	void addWinCnt(int id);
+	
+	/*
+	 * Win_Cnt 1, 2위 이미지 가져오는 함수 
+	 */
+	List<ImageVO> getWinnerList(int tournament_id); 
 }

@@ -25,5 +25,10 @@ public interface ImageDAO {
 	 */
 	public void addWinCnt(int id);
 	
+	/*
+	 * Win_Cnt 1, 2위 이미지 가져오는 함수 
+	 */
+	public List<ImageVO> getWinnerList(int tournament_id);
+	
 	
 }
