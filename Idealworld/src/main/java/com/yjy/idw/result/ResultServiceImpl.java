@@ -11,19 +11,21 @@ public class ResultServiceImpl implements ResultService {
 
 	@Override
 	public int insertResult(ResultVO vo) {
-		int id = sqlSessionTemplate.insert("insertResult", vo);
-		return id;
+		System.out.println("----------[Result insertResult() 함수 호출]----------");
+		return sqlSessionTemplate.insert("insertResult", vo);
 	}
 
 	@Override
-	public int updateResult(ResultVO vo) {
-		return sqlSessionTemplate.update("updateResult", vo);
+	public void updateResult(ResultVO vo) {
+		System.out.println("----------[Result updateResult() 함수 호출]----------");
+		sqlSessionTemplate.update("updateResult", vo);
 	}
 
 	@Override
 	public ResultVO getResult(ResultVO vo) {
-		// TODO Auto-generated method stub
-		return sqlSessionTemplate.selectOne("getResult", vo);
+		System.out.println("----------[Result getResult() 함수 호출]----------");
+		ResultVO result = sqlSessionTemplate.selectOne("getResult", vo);
+		return result;
 	} 
 	
 	

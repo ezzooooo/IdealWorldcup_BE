@@ -44,6 +44,10 @@ public class ImageVO {
 	public void setRound(int round) {
 		this.round = round;
 	}
+	@Override
+	public String toString() {
+		return "[" + id + "," + win_cnt + "]";
+	}
 	
 	
 }
