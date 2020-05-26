@@ -20,8 +20,8 @@ public class ResultController {
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT) 
-	public int updateResult(ResultVO vo) {
-		return resultService.updateResult(vo);
+	public void updateResult(ResultVO vo) {
+		resultService.updateResult(vo);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)

@@ -28,7 +28,7 @@ public class ImageController {
 		S3.ImageUpload(uploadFile);
 	}
 	
-	@RequestMapping(value="getImageList", method=RequestMethod.GET)
+	@RequestMapping(value="", method=RequestMethod.GET)
 	@ResponseBody
 	public List<ImageVO> getImageList(ImageVO vo) {
 		return imageService.getImageList(vo);
@@ -37,5 +37,10 @@ public class ImageController {
 	@RequestMapping(method = RequestMethod.PUT, value = "/wincnt/{id}")
 	public void addWinCnt(@PathVariable(value="id") int id) {
 		imageService.addWinCnt(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/winners/{tournament_id}")
+	public List<ImageVO> getWinners(@PathVariable(value="tournament_id") int tournament_id) {
+		
 	}
 }

@@ -6,7 +6,7 @@ public interface ResultService {
 	int insertResult(ResultVO vo);
 	
 	//게임 결과 Update 
-	int updateResult(ResultVO vo);
+	void updateResult(ResultVO vo);
 	
 	//게임 결과 받아오기 
 	ResultVO getResult(ResultVO vo);
