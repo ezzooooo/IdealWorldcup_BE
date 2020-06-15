@@ -20,7 +20,7 @@
     		and tournament_id = #{tournament_id}
     		order by id
     	</if>
-    	<if test="round == null">
+    	<if test="round =! null">
     		order by rand(), id
     		limit #{round}
     	</if>
