@@ -35,6 +35,7 @@ public class UserController {
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "")
 	public List<UserVO> getUserList() {
+		System.out.println("===>getUserList() 실행");
 		return userService.getUserList();
 	}
 	

@@ -6,7 +6,7 @@ public class ResultVO {
 	private int second_image_id; 
 	private int first_win_cnt; 
 	private int second_win_cnt;
-	String winner;
+	private String winner;
 	
 	public int getId() {
 		return id;
